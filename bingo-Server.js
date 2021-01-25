@@ -22,7 +22,7 @@
     var cardStatus = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     var SCROLL_TIME_MS = 200;
     var TIME_TO_LOAD = 2000;
-    var TOTAL_TIME_MS = 5 * SCROLL_TIME_MS;    
+    var TOTAL_TIME_MS = 17 * SCROLL_TIME_MS;    
     var randomNumber;
     var calledNumberTextID;
     var buttonGetCardID;
