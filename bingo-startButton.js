@@ -1,0 +1,40 @@
+(function() {
+    var myID; 
+    var myParentID;
+    var reset = false;
+    var RESET_TIME = 500;
+    var LOCATION_ROOT_URL = Script.resolvePath(".");
+    var clickSound = SoundCache.getSound(LOCATION_ROOT_URL + "448086__breviceps__normal-click.wav");    
+    
+    this.preload = function (entityID) {
+        myID = entityID;
+        myParentID = Entities.getEntityProperties(myID,["parentID"]).parentID;       
+    };
+
+    function click() {
+        var bingoUser = Account.username;       
+        if (reset) {
+            var injectorOptions = {
+                position: MyAvatar.position,
+                volume: 0.1,
+                localOnly: true            
+            };
+            Audio.playSound(clickSound, injectorOptions);   
+            print(bingoUser + "start is Clicked!");           
+            Entities.callEntityServerMethod(                             
+                myParentID, 
+                "start",
+                [MyAvatar.sessionUUID,MyAvatar.displayName,bingoUser]
+            );            
+            reset = false;
+        }         
+    }
+
+    Script.setInterval(function () {
+        reset = true;    
+    }, RESET_TIME);
+
+    this.startNearTrigger = click;
+    this.clickDownOnEntity = click;
+    this.startFarTrigger = click;
+});
