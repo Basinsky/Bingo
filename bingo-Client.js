@@ -332,7 +332,7 @@
             string = "0";
         }
         if (array.length > 0) {
-            for (var j = 1; j < array.length; j++) {
+            for (var j = 0; j < array.length; j++) {
                 string = string + array[j] + "-";
                 if (j % 10 === 0 && j !== 0) {
                     string = string + "\n";
