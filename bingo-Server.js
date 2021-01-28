@@ -22,7 +22,8 @@
     var cardStatus = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     var SCROLL_TIME_MS = 200;
     var TIME_TO_LOAD = 2000;
-    var TOTAL_TIME_MS = 17 * SCROLL_TIME_MS;    
+    var TOTAL_TIME_MS = 17 * SCROLL_TIME_MS;
+    var CALLED_NUMBER_LINEHEIGHT = 0.12;    
     var randomNumber;
     var calledNumberTextID;
     var buttonGetCardID;
@@ -99,7 +100,7 @@
                         bingoNumbersCalled.push(bingoNumbersNotCalled[randomNumber]);
                         bingoNumbersNotCalled.splice(randomNumber,1);                               
                         newString = arrayToString(bingoNumbersCalled);                                  
-                        Entities.editEntity(calledNumberTextID,{text: newString, lineHeight: 0.07});
+                        Entities.editEntity(calledNumberTextID,{text: newString, lineHeight: CALLED_NUMBER_LINEHEIGHT});
                         print("NotCalled" + JSON.stringify(bingoNumbersNotCalled));
                         print("Called" + JSON.stringify(bingoNumbersCalled));
                         isRunning = false;     
@@ -249,7 +250,7 @@
             playerData = {"players": []};
             // var cardStatus = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];    
             card =[];            
-            Entities.editEntity(calledNumberTextID,{text: "",lineHeight: 0.07});
+            Entities.editEntity(calledNumberTextID,{text: "",lineHeight: CALLED_NUMBER_LINEHEIGHT});
             Entities.editEntity(spinnerID,{text: ""});
             Entities.editEntity (buttonGetCardID,{text: "GET CARD", lineHeight: 0.1});
             fillBingoArray();
@@ -404,10 +405,10 @@
                 type: "Text",        
                 name: "Bingo-Called-Numbers",
                 parentID: myID,            
-                localPosition: { x: 0, y: -1.34, z: 0.07 },
-                dimensions: { x: 1.6, y: 0.4, z: 0.01 },            
+                localPosition: { x: -1.0558, y: 0.0004, z: 0.0699 },
+                dimensions: { x: 1.5282, y: 1.4799, z: 0.01 },            
                 text: "",
-                lineHeight: 0.07,
+                lineHeight: 0.3,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -428,7 +429,7 @@
                 name: "Bingo-Start",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-startButton.js?" + Date.now(),     
-                localPosition: { x: -1.25, y: 0.1782, z: 0.0366 },
+                localPosition: { x: -2.2684, y: 0.6294, z: 0.0167 },
                 dimensions: { x: 0.3936, y: 0.27, z: 0.01 },            
                 text: "START",
                 lineHeight: 0.1,
@@ -452,7 +453,7 @@
                 name: "Bingo-Reset",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-resetButton.js?" + Date.now(),     
-                localPosition: { x: -1.25, y: -0.2093, z: 0.0366 },
+                localPosition: { x: -2.2686, y: -0.6773, z: 0.0366 },
                 dimensions: { x: 0.3936, y: 0.2724, z: 0.01 },            
                 text: "RESET",
                 lineHeight: 0.1,
@@ -476,7 +477,7 @@
                 name: "Bingo-getCard",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-getCardButton.js?" + Date.now(),     
-                localPosition: { x: 1.247, y: 0.453, z: 0.067 },
+                localPosition: { x: 2.2642, y: 0.3724, z: 0.015 },
                 dimensions: { x: 0.4011, y: 0.2546, z: 0.01 },            
                 text: "GET CARD",
                 lineHeight: 0.1,
@@ -500,9 +501,9 @@
                 name: "Switch",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-switch.js?" + Date.now(),     
-                localPosition: { x: 1.247, y: 0, z: 0.067 },
+                localPosition: { x: 2.2642, y: -0.0307, z: 0.015 },
                 dimensions: { x: 0.4011, y: 0.2546, z: 0.01 },            
-                text: "SWITCH",
+                text: "DOCK",
                 lineHeight: 0.1,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
@@ -524,7 +525,7 @@
                 name: "Bingo-Winner",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-checkWinnerButton.js?" + Date.now(),                 
-                localPosition: { x: 1.2424, y: -0.3724, z: 0.0241 },
+                localPosition: { x: 2.2642, y: -0.4543, z: 0.015 },
                 dimensions: { x: 0.3748, y: 0.2736, z: 0.01 },            
                 text: "BINGO",
                 lineHeight: 0.1,
@@ -548,12 +549,13 @@
         if (array.length === 0) {
             string = "0";
         }
-        if (array.length > 0) {
+        if (array.length > 0) {            
+            string = "Numbers called: \n";
             for (var j = 0; j < bingoNumbersCalled.length; j++) {
-                string = string + array[j] + "-";
-                if (j % 15 === 0 && j !== 0) {
+                if (j % 8 === 0) {
                     string = string + "\n";
                 }
+                string = string + array[j] + "-";
             }
         }
         return string;

@@ -67,7 +67,7 @@
                 shape: "Cube",
                 name: "bingoCard",
                 parentID: myID,
-                localPosition: { x: 0, y: 0, z: 0.05 },            
+                localPosition: { x: 0.97, y: 0, z: 0.07 },            
                 collisionless: true,
                 unlit: true,
                 color: cardColor,
