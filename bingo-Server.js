@@ -6,7 +6,7 @@
     var bingoNumbersNotCalled = [];
     var bingoNumbersCalled = [];
     var playerData = {"players": []};
-    var bingoControllerWhitelist = ["basinsky","Silverfish","admin","steve.pruneau"];    
+    var bingoControllerWhitelist = ["basinsky","Silverfish","admin","Steve.Pruneau"];    
     var gearSound = SoundCache.getSound(LOCATION_ROOT_URL + "315753__vurca__running-gear.wav"); 
     var winnerSound = SoundCache.getSound(LOCATION_ROOT_URL + "456966__funwithsound__success-fanfare-trumpets.wav");
     var loserSound = SoundCache.getSound(LOCATION_ROOT_URL + "493163__breviceps__buzzer-sounds-wrong-answer-error.wav");   
