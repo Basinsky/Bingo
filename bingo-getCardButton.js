@@ -14,7 +14,8 @@
     function click() {
         var bingoUser = Account.username;
         if (bingoUser === "Unknown user") {
-            Window.alert("If you want to play the Bingo game please login the metaverse");
+            AccountServices.checkAndSignalForAccessToken();
+            // Window.alert("If you want to play the Bingo game please login the metaverse");
         } else {
             if (reset) {
                 var injectorOptions = {

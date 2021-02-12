@@ -5,10 +5,10 @@
     var RESET_TIME = 500;     
     var LOCATION_ROOT_URL = Script.resolvePath(".");
     var buttonID;    
-    var BUTTON_WIDTH = 0.25;
-    var BUTTON_HEIGHT = 0.25;
-    var SPACE = 0.04;
-    var SCALE = 4;
+    var BUTTON_WIDTH = 0.5; // 0.25
+    var BUTTON_HEIGHT = 0.5; // 0.25
+    var SPACE = 0.08; // 0.04
+    var SCALE = 8;
     var buttons = [];
     var cardStatus = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];    
     var clickSound = SoundCache.getSound(LOCATION_ROOT_URL + "448086__breviceps__normal-click.wav"); 
@@ -29,7 +29,7 @@
 
     this.preload = function (entityID) {
         myID = entityID;
-        bingoUser = Account.username;
+        bingoUser = AccountServices.username;
             
         if (cardID === "") {
             Entities.callEntityServerMethod(              
@@ -67,7 +67,7 @@
                 shape: "Cube",
                 name: "bingoCard",
                 parentID: myID,
-                localPosition: { x: 0.97, y: 0, z: 0.07 },            
+                localPosition: { x: 2, y: 0, z: 0.07 },            
                 collisionless: true,
                 unlit: true,
                 color: cardColor,
@@ -230,7 +230,7 @@
             userData: JSON.stringify({
                 grabbableKey: { grabbable: false, triggerable: false }
             })                                          
-        });
+        },"avatar");
         
         winnerParticleID = Entities.addEntity({
             type: "ParticleEffect",        
@@ -263,7 +263,7 @@
             userData: JSON.stringify({
                 grabbableKey: { grabbable: false, triggerable: false }
             })                                          
-        });
+        },"avatar");
     };
 
     Entities.mousePressOnEntity.connect(function (entityID, event) {
@@ -343,8 +343,19 @@
     }
 
     function onDomainChanged() {
+        print("User " + AccountServices.username + " changed domain");
         deleteLocalEntities();
         cardID = "";
     }
+
+    function UserGotDisconnected() {
+        print("User " + AccountServices.username + " got Disconnected");
+        deleteLocalEntities();        
+        cardID = "";
+    }
+
+
     Window.domainChanged.connect(onDomainChanged);
+
+    AccountServices.disconnected.connect(UserGotDisconnected);
 });

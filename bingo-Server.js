@@ -9,7 +9,7 @@
     var bingoControllerWhitelist = ["basinsky","Silverfish","admin","Steve.Pruneau"];    
     var gearSound = SoundCache.getSound(LOCATION_ROOT_URL + "315753__vurca__running-gear.wav"); 
     var winnerSound = SoundCache.getSound(LOCATION_ROOT_URL + "456966__funwithsound__success-fanfare-trumpets.wav");
-    var loserSound = SoundCache.getSound(LOCATION_ROOT_URL + "493163__breviceps__buzzer-sounds-wrong-answer-error.wav");   
+    var loserSound = SoundCache.getSound(LOCATION_ROOT_URL + "528956__beetlemuse__wrong-answer-incorrect-error.wav");   
     var userAccount;
     var userName;
     var userID;
@@ -23,7 +23,7 @@
     var SCROLL_TIME_MS = 200;
     var TIME_TO_LOAD = 2000;
     var TOTAL_TIME_MS = 17 * SCROLL_TIME_MS;
-    var CALLED_NUMBER_LINEHEIGHT = 0.12;    
+    var CALLED_NUMBER_LINEHEIGHT = 0.24;    
     var randomNumber;
     var calledNumberTextID;
     var buttonGetCardID;
@@ -74,7 +74,7 @@
         if (bingoControllerWhitelist.indexOf(userAccount) !== -1 && playerData.players.length > 0) {
             isInProgress = true;
             isRegistering = false;
-            Entities.editEntity (buttonGetCardID,{text: "IN PROGRESS", lineHeight: 0.085});
+            Entities.editEntity (buttonGetCardID,{text: "IN PROGRESS", lineHeight: 0.3});
             if (!isRunning) {
                 isRunning = true;
                 var newString = "";          
@@ -199,7 +199,8 @@
                             myID, 
                             "deleteCard",
                             ["test"]
-                        );   
+                        );
+                        updatePlayerPanel();    
                     }                
                 }
                 if (!isRemoved) {                          
@@ -211,7 +212,8 @@
                         "userAccount": userAccount,
                         "card": card,
                         "cardStatus": cardStatus
-                    }); 
+                    });
+                    updatePlayerPanel(); 
                     print(JSON.stringify(playerData.players)); 
                     Entities.callEntityClientMethod(candidateID,              
                         myID, 
@@ -252,7 +254,7 @@
             card =[];            
             Entities.editEntity(calledNumberTextID,{text: "",lineHeight: CALLED_NUMBER_LINEHEIGHT});
             Entities.editEntity(spinnerID,{text: ""});
-            Entities.editEntity (buttonGetCardID,{text: "GET CARD", lineHeight: 0.1});
+            Entities.editEntity (buttonGetCardID,{text: "GET CARD", lineHeight: 0.4});
             fillBingoArray();
             cardColor = { r: Math.ceil(Math.random()*254),
                 g: Math.ceil(Math.random()*254),
@@ -383,10 +385,10 @@
                 type: "Text",        
                 name: "Bingo-spinner",
                 parentID: myID,            
-                localPosition: { x: 0, y: 1.4, z: 0.03 },                     
-                dimensions: { x: 0.9, y: 0.9, z: 0 },            
+                localPosition: { x: 0, y: 3, z: 0.15 },                     
+                dimensions: { x: 1.8, y: 1.8, z: 0 },            
                 text: "",
-                lineHeight: 0.8,
+                lineHeight: 1.6,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 0.1, 
                 visible: true,
@@ -405,10 +407,10 @@
                 type: "Text",        
                 name: "Bingo-Called-Numbers",
                 parentID: myID,            
-                localPosition: { x: -1.0558, y: 0.0004, z: 0.0699 },
-                dimensions: { x: 1.5282, y: 1.4799, z: 0.01 },            
+                localPosition: { x: -2, y: 0.0004, z: 0.15 },
+                dimensions: { x: 3, y: 3, z: 0.01 },            
                 text: "",
-                lineHeight: 0.3,
+                lineHeight: 1.2,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -429,10 +431,10 @@
                 name: "Bingo-Start",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-startButton.js?" + Date.now(),     
-                localPosition: { x: -2.2684, y: 0.6294, z: 0.0167 },
-                dimensions: { x: 0.3936, y: 0.27, z: 0.01 },            
+                localPosition: { x: -4.4, y: 1.38, z: 0.15 },
+                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
                 text: "START",
-                lineHeight: 0.1,
+                lineHeight: 0.4,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -453,10 +455,10 @@
                 name: "Bingo-Reset",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-resetButton.js?" + Date.now(),     
-                localPosition: { x: -2.2686, y: -0.6773, z: 0.0366 },
-                dimensions: { x: 0.3936, y: 0.2724, z: 0.01 },            
+                localPosition: { x: -4.4, y: -0.6773, z: 0.15 },
+                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
                 text: "RESET",
-                lineHeight: 0.1,
+                lineHeight: 0.4,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -477,10 +479,10 @@
                 name: "Bingo-getCard",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-getCardButton.js?" + Date.now(),     
-                localPosition: { x: 2.2642, y: 0.3724, z: 0.015 },
-                dimensions: { x: 0.4011, y: 0.2546, z: 0.01 },            
+                localPosition: { x: 4.4, y: 0.3724, z: 0.15 },
+                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
                 text: "GET CARD",
-                lineHeight: 0.1,
+                lineHeight: 0.4,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -498,13 +500,13 @@
         if (!switchtCardID) {
             switchtCardID = Entities.addEntity({
                 type: "Text",        
-                name: "Switch",
+                name: "Bingo-Switch",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-switch.js?" + Date.now(),     
-                localPosition: { x: 2.2642, y: -0.0307, z: 0.015 },
-                dimensions: { x: 0.4011, y: 0.2546, z: 0.01 },            
+                localPosition: { x: 4.4, y: -0.0307, z: 0.15 },
+                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
                 text: "DOCK",
-                lineHeight: 0.1,
+                lineHeight: 0.4,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -525,10 +527,10 @@
                 name: "Bingo-Winner",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-checkWinnerButton.js?" + Date.now(),                 
-                localPosition: { x: 2.2642, y: -0.4543, z: 0.015 },
-                dimensions: { x: 0.3748, y: 0.2736, z: 0.01 },            
+                localPosition: { x: 4.4, y: -0.4543, z: 0.15 },
+                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
                 text: "BINGO",
-                lineHeight: 0.1,
+                lineHeight: 0.4,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
@@ -586,6 +588,20 @@
         return false;   
     }
 
+    function updatePlayerPanel() {
+        var playersMerged = "Players: " + playerData.players.length + "\n";        
+        if (playerData.players.length === 0) {           
+            Entities.editEntity(calledNumberTextID, { text: playersMerged});           
+        } else {
+            for (var i = 0; i < playerData.players.length; i++) {       
+                playersMerged = playersMerged + (i+1) +". " + playerData.players[i].name + " ";                            
+            }   
+            Entities.editEntity(calledNumberTextID, { text: playersMerged, lineHeight: 0.18});            
+            playersMerged = "";   
+        }       
+    } 
+
+    
     // Start of program
     Script.setTimeout(function () {         
         fillBingoArray();        
