@@ -74,7 +74,7 @@
         if (bingoControllerWhitelist.indexOf(userAccount) !== -1 && playerData.players.length > 0) {
             isInProgress = true;
             isRegistering = false;
-            Entities.editEntity (buttonGetCardID,{text: "IN PROGRESS", lineHeight: 0.3});
+            Entities.editEntity (buttonGetCardID,{backgroundColor: { r: 0, g: 0, b: 0 }});
             if (!isRunning) {
                 isRunning = true;
                 var newString = "";          
@@ -254,7 +254,7 @@
             card =[];            
             Entities.editEntity(calledNumberTextID,{text: "",lineHeight: CALLED_NUMBER_LINEHEIGHT});
             Entities.editEntity(spinnerID,{text: ""});
-            Entities.editEntity (buttonGetCardID,{text: "GET CARD", lineHeight: 0.4});
+            Entities.editEntity (buttonGetCardID,{backgroundColor: { r: 20, g: 255, b: 0 }});
             fillBingoArray();
             cardColor = { r: Math.ceil(Math.random()*254),
                 g: Math.ceil(Math.random()*254),
@@ -385,12 +385,13 @@
                 type: "Text",        
                 name: "Bingo-spinner",
                 parentID: myID,            
-                localPosition: { x: 0, y: 3, z: 0.15 },                     
-                dimensions: { x: 1.8, y: 1.8, z: 0 },            
+                localPosition: { x: -0.4048, y: 1.7485, z: -0.2 },                     
+                dimensions: { x: 1.6, y: 1.6, z: 0 },            
                 text: "",
                 lineHeight: 1.6,
                 textColor: { r: 255, g: 255, b: 255 },
-                backgroundAlpha: 0.1, 
+                backgroundAlpha: 1,
+                backgroundColor: { r: 0, g: 0, b: 0 },  
                 visible: true,
                 unlit: true,
                 font: "Roboto",
@@ -407,8 +408,8 @@
                 type: "Text",        
                 name: "Bingo-Called-Numbers",
                 parentID: myID,            
-                localPosition: { x: -2, y: 0.0004, z: 0.15 },
-                dimensions: { x: 3, y: 3, z: 0.01 },            
+                localPosition: { x: 4.6, y: 0.3, z: 0.15 },
+                dimensions: { x: 1.48, y: 5.86, z: 0.01 },            
                 text: "",
                 lineHeight: 1.2,
                 textColor: { r: 255, g: 255, b: 255 },
@@ -431,12 +432,13 @@
                 name: "Bingo-Start",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-startButton.js?" + Date.now(),     
-                localPosition: { x: -4.4, y: 1.38, z: 0.15 },
-                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
+                localPosition: { x: -1.8343, y: -1.247, z: 0 },
+                dimensions: { x: 0.15, y: 0.12, z: 0.01 },            
                 text: "START",
-                lineHeight: 0.4,
+                lineHeight: 0.05,
                 textColor: { r: 255, g: 255, b: 255 },
-                backgroundAlpha: 1, 
+                backgroundAlpha: 1,
+                backgroundColor: { r: 44, g: 119, b: 232 },  
                 visible: true,
                 unlit: true,
                 font: "Roboto",
@@ -455,12 +457,13 @@
                 name: "Bingo-Reset",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-resetButton.js?" + Date.now(),     
-                localPosition: { x: -4.4, y: -0.6773, z: 0.15 },
-                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
+                localPosition: { x: -1.8343, y: -1.7156, z: 0 },
+                dimensions: { x: 0.15, y: 0.12, z: 0.01 },            
                 text: "RESET",
-                lineHeight: 0.4,
+                lineHeight: 0.05,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
+                backgroundColor: { r: 255, g: 183, b: 0 },  
                 visible: true,
                 unlit: true,
                 font: "Roboto",
@@ -479,12 +482,13 @@
                 name: "Bingo-getCard",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-getCardButton.js?" + Date.now(),     
-                localPosition: { x: 4.4, y: 0.3724, z: 0.15 },
-                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
-                text: "GET CARD",
+                localPosition: { x: 1.5289, y: 0.1719, z: -0.01 },
+                dimensions: { x: 1.05, y: 0.4844, z: 0.01 },            
+                text: "CARD",
                 lineHeight: 0.4,
-                textColor: { r: 255, g: 255, b: 255 },
-                backgroundAlpha: 1, 
+                textColor: { r: 0, g: 0, b: 0 },
+                backgroundAlpha: 1,
+                backgroundColor: { r: 20, g: 255, b: 0 }, 
                 visible: true,
                 unlit: true,
                 font: "Roboto",
@@ -503,11 +507,11 @@
                 name: "Bingo-Switch",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-switch.js?" + Date.now(),     
-                localPosition: { x: 4.4, y: -0.0307, z: 0.15 },
-                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
+                localPosition: { x: 1.5289, y: -0.6914, z: -0.01 },
+                dimensions: { x: 1.05, y: 0.4844, z: 0.01 },            
                 text: "DOCK",
                 lineHeight: 0.4,
-                textColor: { r: 255, g: 255, b: 255 },
+                textColor: { r: 150, g: 150, b: 150 },
                 backgroundAlpha: 1, 
                 visible: true,
                 unlit: true,
@@ -527,12 +531,13 @@
                 name: "Bingo-Winner",
                 parentID: myID,
                 script: LOCATION_ROOT_URL + "bingo-checkWinnerButton.js?" + Date.now(),                 
-                localPosition: { x: 4.4, y: -0.4543, z: 0.15 },
-                dimensions: { x: 1.7, y: 0.4, z: 0.01 },            
+                localPosition: { x: 1.5191, y: -1.5518, z: -0.01 },
+                dimensions: { x: 1.078, y: 0.4844, z: 0.01 },            
                 text: "BINGO",
                 lineHeight: 0.4,
-                textColor: { r: 255, g: 255, b: 255 },
-                backgroundAlpha: 1, 
+                textColor: { r: 255, g: 0, b: 0 },
+                backgroundAlpha: 1,
+                backgroundColor: { r: 255, g: 120, b: 255 },  
                 visible: true,
                 unlit: true,
                 font: "Roboto",
@@ -552,9 +557,9 @@
             string = "0";
         }
         if (array.length > 0) {            
-            string = "Numbers called: \n";
+            string = "Called: \n";
             for (var j = 0; j < bingoNumbersCalled.length; j++) {
-                if (j % 8 === 0) {
+                if (j % 4 === 0) {
                     string = string + "\n";
                 }
                 string = string + array[j] + "-";

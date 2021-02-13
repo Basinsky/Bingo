@@ -5,10 +5,10 @@
     var RESET_TIME = 500;     
     var LOCATION_ROOT_URL = Script.resolvePath(".");
     var buttonID;    
-    var BUTTON_WIDTH = 0.5; // 0.25
-    var BUTTON_HEIGHT = 0.5; // 0.25
-    var SPACE = 0.08; // 0.04
-    var SCALE = 8;
+    var BUTTON_WIDTH = 0.325; // 0.25
+    var BUTTON_HEIGHT = 0.325; // 0.25
+    var SPACE = 0.052; // 0.04
+    var SCALE = 5.2;
     var buttons = [];
     var cardStatus = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];    
     var clickSound = SoundCache.getSound(LOCATION_ROOT_URL + "448086__breviceps__normal-click.wav"); 
@@ -67,7 +67,7 @@
                 shape: "Cube",
                 name: "bingoCard",
                 parentID: myID,
-                localPosition: { x: 2, y: 0, z: 0.07 },            
+                localPosition: { x: -0.53, y: -0.78, z: 0.07 },            
                 collisionless: true,
                 unlit: true,
                 color: cardColor,
