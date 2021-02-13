@@ -221,6 +221,7 @@
             parentID: MyAvatar.sessionUUID,
             imageURL: bingoWinnerImageURL,            
             localPosition: { x: 0, y: 1, z: 0.07 },
+            localRotation: Quat.IDENTITY,
             dimensions: { x: 1, y: 1, z: 0.01 },            
             billboardMode: "yaw",                
             visible: true,
