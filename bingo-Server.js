@@ -599,7 +599,7 @@
             Entities.editEntity(calledNumberTextID, { text: playersMerged});           
         } else {
             for (var i = 0; i < playerData.players.length; i++) {       
-                playersMerged = playersMerged + (i+1) +". " + playerData.players[i].name + " ";                            
+                playersMerged = playersMerged + (i+1) +". " + playerData.players[i].name + "\n";                            
             }   
             Entities.editEntity(calledNumberTextID, { text: playersMerged, lineHeight: 0.18});            
             playersMerged = "";   
