@@ -6,7 +6,7 @@
     var bingoNumbersNotCalled = [];
     var bingoNumbersCalled = [];
     var playerData = {"players": []};
-    var bingoControllerWhitelist = ["basinsky","Silverfish","admin","Steve.Pruneau","kim.peone"];    
+    var bingoControllerWhitelist = ["basinsky","Silverfish","admin","Steve.Pruneau","kim.peone","artist_services"];    
     var gearSound = SoundCache.getSound(LOCATION_ROOT_URL + "315753__vurca__running-gear.wav"); 
     var winnerSound = SoundCache.getSound(LOCATION_ROOT_URL + "456966__funwithsound__success-fanfare-trumpets.wav");
     var loserSound = SoundCache.getSound(LOCATION_ROOT_URL + "528956__beetlemuse__wrong-answer-incorrect-error.wav");   
@@ -412,6 +412,7 @@
                 dimensions: { x: 1.48, y: 4.5873, z: 0.01 },            
                 text: "",
                 lineHeight: 1.2,
+                topMargin: 0.1,
                 textColor: { r: 255, g: 255, b: 255 },
                 backgroundAlpha: 1, 
                 visible: true,
